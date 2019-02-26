@@ -1,0 +1,4 @@
+Instalado no python3
+
+doc offline, abrir no navegador:
+file:///usr/share/doc/opencv-doc/html/index.html
