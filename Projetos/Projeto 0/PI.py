@@ -33,7 +33,8 @@ r, resolution, image = vrep.simxGetVisionSensorImage(clientID, colorCam, 1, vrep
 time.sleep(0.5)
 
 
-kp, ki, kd = 1, 0, 0
+kp, ki, kd = 1, 0.05, 5
+
 I = 0
 C = 0
 vL, vR = 0.2, 0.2
@@ -55,8 +56,8 @@ while True:
 
 
 	#(2, 1.5)
-	k = 2
-	kF = 2
+	k = 1.5
+	kF = 1.5
 
 	C_prev = C
 
