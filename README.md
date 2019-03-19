@@ -21,12 +21,12 @@ Sharpening             |  Ruído
 ![](ReadMeImages/2_3.png) |  ![](ReadMeImages/2_4.png) 
 
 Median Blur             |  
-:-------------------------:|:-------------------------:
+:-------------------------:|
 ![](ReadMeImages/2_5.png) |  
 
 
-Histograma de Cores             |  
-:-------------------------:|:-------------------------:
+Histograma de Cores         |  
+:-------------------------:|
 ![](ReadMeImages/3_1.png) |  
 
 
@@ -50,3 +50,6 @@ Original             |  Segmentation
 :-------------------------:|:-------------------------:
 ![](ReadMeImages/7_1.png) |  ![](ReadMeImages/7_2.png) 
 
+Projeto 0: Simulador Robô Seguidor de Linha     |  
+:-------------------------:|
+![](ReadMeImages/8_1.png) |  
