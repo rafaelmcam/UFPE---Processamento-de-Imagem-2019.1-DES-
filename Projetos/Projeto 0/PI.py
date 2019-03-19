@@ -8,8 +8,15 @@ import time
 from PIL import Image as I
 
 
-#internet
+#internet limita o range que uma variável pode assumir
 clamp = lambda n, minn, maxn: max(min(maxn, n), minn)
+
+#calcula o centroide de uma faixa da imagem
+def centroide_tira(mask, tira):
+	r = np.mean(np.where(mask[tira, :] > 250))
+	if np.isnan(r):
+		r = mask.shape[1]
+	return r
 
 print('program started')
 vrep.simxFinish(-1)
@@ -42,21 +49,10 @@ while True:
 	mask = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV)[1]
 	mask = cv2.medianBlur(mask, 5) #tirar pontos brancos
 	
+	top = centroide_tira(mask, mask.shape[0]//8)
+	mid = centroide_tira(mask, mask.shape[0]//2)
+	bot = centroide_tira(mask, mask.shape[0]-1)
 
-	top = np.mean(np.argwhere(np.array([i * mask[(mask.shape[0]//8), i]/255 for i in range(mask.shape[1])])))
-	if np.isnan(top):
-		top = mask.shape[1]
-
-
-	mid = np.mean(np.argwhere(np.array([i * mask[(mask.shape[0]//2)*1, i]/255 for i in range(mask.shape[1])])))
-	if np.isnan(mid):
-		mid = mask.shape[1]
-		
-
-	bot = np.mean(np.argwhere(np.array([i * mask[(mask.shape[0]-1), i]/255 for i in range(mask.shape[1])])))
-
-	if np.isnan(bot):
-		bot = 10000000 #fica girando pra até achar a linha, não deveria acontecer
 
 	#(2, 1.5)
 	k = 2
@@ -70,10 +66,8 @@ while True:
 
 	C = Cb * (4/8) + Cm * (3/8) + Ct * (1/8)
 
-
 	#C = ((mid + bot)/2) - mask.shape[1]//2
 	#C = bot - mask.shape[1]//2
-
 
 	P = kp * (C/(mask.shape[1]//2))
 	I += ki * (C/(mask.shape[1]//2))
@@ -84,7 +78,6 @@ while True:
 	vLf = clamp(vL * kF, 0.1, 5)
 	vRf = clamp(vR * kF, 0.1, 5)
 	#print(C, C_prev)
-
 	#print("{:.2f} {:.2f}".format(vLf, vRf))
 	print("Erro Total: {:6.2f}     {:6.2f} {:6.2f} {:6.2f}".format(C, Cb, Cm, Ct))
 
