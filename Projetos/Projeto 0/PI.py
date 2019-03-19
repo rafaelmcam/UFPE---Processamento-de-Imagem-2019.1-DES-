@@ -1,3 +1,5 @@
+#python3 -W ignore PI.py
+
 import vrep
 import cv2
 import array
@@ -6,17 +8,8 @@ import time
 from PIL import Image as I
 
 
-def mapRange(value, leftMin, leftMax, rightMin, rightMax):
-    # Figure out how 'wide' each range is
-    leftSpan = leftMax - leftMin
-    rightSpan = rightMax - rightMin
-
-    # Convert the left range into a 0-1 range (float)
-    valueScaled = float(value - leftMin) / float(leftSpan)
-
-    # Convert the 0-1 range into a value in the right range.
-    return rightMin + (valueScaled * rightSpan)
-
+#internet
+clamp = lambda n, minn, maxn: max(min(maxn, n), minn)
 
 print('program started')
 vrep.simxFinish(-1)
@@ -33,6 +26,11 @@ r, resolution, image = vrep.simxGetVisionSensorImage(clientID, colorCam, 1, vrep
 time.sleep(0.5)
 
 
+kp, ki, kd = 1, 0, 0
+I = 0
+C = 0
+vL, vR = 0.2, 0.2
+
 while True:
 	r, resolution, image = vrep.simxGetVisionSensorImage(clientID, colorCam, 1, vrep.simx_opmode_buffer);
 	mat = np.asarray(image, dtype=np.uint8) 
@@ -45,51 +43,53 @@ while True:
 	mask = cv2.medianBlur(mask, 5) #tirar pontos brancos
 	
 
-	try:
-		meio = np.mean(np.argwhere(np.array([i * mask[(mask.shape[0]//2)*1, i]/255 for i in range(mask.shape[1])])))
-	except:
-		meio = np.zeros(1)
-		
-	try:
-		fim = np.mean(np.argwhere(np.array([i * mask[(mask.shape[0]-1), i]/255 for i in range(mask.shape[1])])))
-	except:
-		fim = np.zeros(1)
+	top = np.mean(np.argwhere(np.array([i * mask[(mask.shape[0]//8), i]/255 for i in range(mask.shape[1])])))
+	if np.isnan(top):
+		top = mask.shape[1]
 
 
-	#print(meio, fim)
-	
-	#quanto maior o T o K precisa ser menor pra não dar um ganho proporcional muito grande
-	k = 6
-	T = 4
-	#pares testados (2, 14), (3, 10), (6, 4)
-
-
-	print(meio, fim)
-
-	PAR = 100
-
-	if np.isnan(meio):
-		if vR > vL:
-			vl, vR = 0, 0.4*T
-		else:
-			vl, vR = 0.4*T, 0
-		pass
-	else:
-		if abs(meio - mask.shape[1]//2) > PAR:
-			if meio > mask.shape[1]//2:
-				print("Virada forçada à Direita")
-				vL, vR = 0.1*k*T, 0.1*T
-			elif meio < mask.shape[1]//2:
-				print("Virada forçada à Esquerda")
-				vL, vR = 0.1*T, 0.1*k*T
-		else:
-			vL, vR = mapRange(fim, 0, mask.shape[0], -0.4, 0.4)*T, 0.2*T
-			print("Ajuste Fino Proporcional")
-			#mapRange(fim, 0, mask.shape[0], -0.1, 0.1)
+	mid = np.mean(np.argwhere(np.array([i * mask[(mask.shape[0]//2)*1, i]/255 for i in range(mask.shape[1])])))
+	if np.isnan(mid):
+		mid = mask.shape[1]
 		
 
-	vrep.simxSetJointTargetVelocity(clientID, leftmotor, vL, vrep.simx_opmode_streaming);
-	vrep.simxSetJointTargetVelocity(clientID, rightmotor, vR, vrep.simx_opmode_streaming);	
+	bot = np.mean(np.argwhere(np.array([i * mask[(mask.shape[0]-1), i]/255 for i in range(mask.shape[1])])))
+
+	if np.isnan(bot):
+		bot = 10000000 #fica girando pra até achar a linha, não deveria acontecer
+
+	#(2, 1.5)
+	k = 2
+	kF = 2
+
+	C_prev = C
+
+	Cb = bot - mask.shape[1]//2
+	Cm = mid - mask.shape[1]//2
+	Ct = top - mask.shape[1]//2
+
+	C = Cb * (4/8) + Cm * (3/8) + Ct * (1/8)
+
+
+	#C = ((mid + bot)/2) - mask.shape[1]//2
+	#C = bot - mask.shape[1]//2
+
+
+	P = kp * (C/(mask.shape[1]//2))
+	I += ki * (C/(mask.shape[1]//2))
+	D = kd * ((C/(mask.shape[1]//2)) - (C_prev/(mask.shape[1]//2)))
+	r = P + I + D
+	vL, vR = 1 + r * k, 1 - r * k
+
+	vLf = clamp(vL * kF, 0.1, 5)
+	vRf = clamp(vR * kF, 0.1, 5)
+	#print(C, C_prev)
+
+	#print("{:.2f} {:.2f}".format(vLf, vRf))
+	print("Erro Total: {:6.2f}     {:6.2f} {:6.2f} {:6.2f}".format(C, Cb, Cm, Ct))
+
+	vrep.simxSetJointTargetVelocity(clientID, leftmotor, vLf, vrep.simx_opmode_streaming);
+	vrep.simxSetJointTargetVelocity(clientID, rightmotor, vRf, vrep.simx_opmode_streaming);	
 	cv2.imshow('robot camera', mask)	
 
 	if cv2.waitKey(1) & 0xFF == ord('q'):
