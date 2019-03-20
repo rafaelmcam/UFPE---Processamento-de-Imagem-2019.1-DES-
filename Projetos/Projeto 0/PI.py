@@ -12,10 +12,13 @@ from PIL import Image as I
 clamp = lambda n, minn, maxn: max(min(maxn, n), minn)
 
 #calcula o centroide de uma faixa da imagem
-def centroide_tira(mask, tira):
+def centroide_tira(mask, tira, last_value):
 	r = np.mean(np.where(mask[tira, :] > 250))
 	if np.isnan(r):
-		r = mask.shape[1]
+		if last_value > mask.shape[1]//2:
+			r = mask.shape[1]
+		else:
+			r = 0
 	return r
 
 print('program started')
@@ -32,8 +35,10 @@ vrep.simxSetJointTargetVelocity(clientID, rightmotor, 0, vrep.simx_opmode_stream
 r, resolution, image = vrep.simxGetVisionSensorImage(clientID, colorCam, 1, vrep.simx_opmode_streaming);
 time.sleep(0.5)
 
+top, mid, bot = 320, 320, 320
 
-kp, ki, kd = 1, 0.05, 5
+#(0.5, 0.02, 2) para (k, kf = 2, 4)
+kp, ki, kd = 0.8, 0.04, 3
 
 I = 0
 C = 0
@@ -50,9 +55,9 @@ while True:
 	mask = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV)[1]
 	mask = cv2.medianBlur(mask, 5) #tirar pontos brancos
 	
-	top = centroide_tira(mask, mask.shape[0]//8)
-	mid = centroide_tira(mask, mask.shape[0]//2)
-	bot = centroide_tira(mask, mask.shape[0]-1)
+	top = centroide_tira(mask, mask.shape[0]//8, top)
+	mid = centroide_tira(mask, mask.shape[0]//2, mid)
+	bot = centroide_tira(mask, mask.shape[0]-1, bot)
 
 
 	#(2, 1.5)
@@ -83,7 +88,11 @@ while True:
 	print("Erro Total: {:6.2f}     {:6.2f} {:6.2f} {:6.2f}".format(C, Cb, Cm, Ct))
 
 	vrep.simxSetJointTargetVelocity(clientID, leftmotor, vLf, vrep.simx_opmode_streaming);
-	vrep.simxSetJointTargetVelocity(clientID, rightmotor, vRf, vrep.simx_opmode_streaming);	
+	vrep.simxSetJointTargetVelocity(clientID, rightmotor, vRf, vrep.simx_opmode_streaming);
+
+	cv2.ellipse(mask, center = (int(top), mask.shape[0]//8), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
+	cv2.ellipse(mask, center = (int(mid), mask.shape[0]//2), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
+	cv2.ellipse(mask, center = (int(bot), mask.shape[0]-1), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
 	cv2.imshow('robot camera', mask)	
 
 	if cv2.waitKey(1) & 0xFF == ord('q'):
