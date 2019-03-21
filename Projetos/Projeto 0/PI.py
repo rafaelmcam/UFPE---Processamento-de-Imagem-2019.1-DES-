@@ -62,7 +62,7 @@ while True:
 
 	#(2, 1.5), (1.5 , 1.5)
 	k = 4
-	kF = 1.2
+	kF = 1.3
 
 	C_prev = C
 
@@ -81,8 +81,8 @@ while True:
 	r = P + I + D
 	vL, vR = 4 + r * k, 4 - r * k
 
-	vLf = clamp(vL * kF, 0.5, 8)
-	vRf = clamp(vR * kF, 0.5, 8)
+	vLf = clamp(vL * kF, 0.3, 8)
+	vRf = clamp(vR * kF, 0.3, 8)
 
 
 
@@ -95,8 +95,8 @@ while True:
 
 	#cv2.ellipse(mask, center = (int(top), mask.shape[0]//8), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
 	#cv2.ellipse(mask, center = (int(mid), mask.shape[0]//2), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
-	cv2.ellipse(mask, center = (int(bot), mask.shape[0]-1), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
-	cv2.imshow('robot camera', mask)	
+	#cv2.ellipse(mask, center = (int(bot), mask.shape[0]-1), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
+	#cv2.imshow('robot camera', mask)	
 
 	if cv2.waitKey(1) & 0xFF == ord('q'):
             break
