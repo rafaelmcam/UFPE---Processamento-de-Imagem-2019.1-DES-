@@ -38,7 +38,7 @@ time.sleep(0.5)
 top, mid, bot = 320, 320, 320
 
 #(0.5, 0.02, 2) para (k, kf = 2, 4)
-kp, ki, kd = 0.5, 0.01, 8
+kp, ki, kd = 0.4, 0, 8
 
 I = 0
 C = 0
@@ -61,8 +61,8 @@ while True:
 
 
 	#(2, 1.5), (1.5 , 1.5)
-	k = 3.5
-	kF = 1.5
+	k = 5
+	kF = 1.3
 
 	C_prev = C
 
@@ -70,7 +70,7 @@ while True:
 	Cm = mid - mask.shape[1]//2
 	Ct = top - mask.shape[1]//2
 
-	C = Cb * (4/8) + Cm * (3/8) + Ct * (1/8)
+	C = Cb * (6/6)
 
 	#C = ((mid + bot)/2) - mask.shape[1]//2
 	#C = bot - mask.shape[1]//2
@@ -79,16 +79,11 @@ while True:
 	I += ki * (C/(mask.shape[1]//2))
 	D = kd * ((C/(mask.shape[1]//2)) - (C_prev/(mask.shape[1]//2)))
 	r = P + I + D
-	vL, vR = 3 + r * k, 3 - r * k
+	vL, vR = 4 + r * k, 4 - r * k
 
-	vLf = clamp(vL * kF, 0, 7.5)
-	vRf = clamp(vR * kF, 0, 7.5)
+	vLf = clamp(vL * kF, 0.5, 8)
+	vRf = clamp(vR * kF, 0.5, 8)
 
-
-	# if vLf == 6:
-	# 	vRf = 0.1
-	# elif vRf == 6:
-	# 	vLf = 0.1
 
 
 	#print(C, C_prev)
@@ -99,7 +94,7 @@ while True:
 	vrep.simxSetJointTargetVelocity(clientID, rightmotor, vRf, vrep.simx_opmode_streaming);
 
 	#cv2.ellipse(mask, center = (int(top), mask.shape[0]//8), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
-	cv2.ellipse(mask, center = (int(mid), mask.shape[0]//2), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
+	#cv2.ellipse(mask, center = (int(mid), mask.shape[0]//2), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
 	cv2.ellipse(mask, center = (int(bot), mask.shape[0]-1), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
 	cv2.imshow('robot camera', mask)	
 
