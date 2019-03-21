@@ -38,7 +38,7 @@ time.sleep(0.5)
 top, mid, bot = 320, 320, 320
 
 #(0.5, 0.02, 2) para (k, kf = 2, 4)
-kp, ki, kd = 0.4, 0, 8
+kp, ki, kd = 0.6, 0, 5
 
 I = 0
 C = 0
@@ -61,8 +61,8 @@ while True:
 
 
 	#(2, 1.5), (1.5 , 1.5)
-	k = 5
-	kF = 1.3
+	k = 4
+	kF = 1.2
 
 	C_prev = C
 
