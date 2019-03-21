@@ -38,7 +38,7 @@ time.sleep(0.5)
 top, mid, bot = 320, 320, 320
 
 #(0.5, 0.02, 2) para (k, kf = 2, 4)
-kp, ki, kd = 0.8, 0.04, 3
+kp, ki, kd = 0.5, 0.01, 8
 
 I = 0
 C = 0
@@ -60,8 +60,8 @@ while True:
 	bot = centroide_tira(mask, mask.shape[0]-1, bot)
 
 
-	#(2, 1.5)
-	k = 1.5
+	#(2, 1.5), (1.5 , 1.5)
+	k = 3.5
 	kF = 1.5
 
 	C_prev = C
@@ -79,18 +79,26 @@ while True:
 	I += ki * (C/(mask.shape[1]//2))
 	D = kd * ((C/(mask.shape[1]//2)) - (C_prev/(mask.shape[1]//2)))
 	r = P + I + D
-	vL, vR = 1 + r * k, 1 - r * k
+	vL, vR = 3 + r * k, 3 - r * k
 
-	vLf = clamp(vL * kF, 0.1, 5)
-	vRf = clamp(vR * kF, 0.1, 5)
+	vLf = clamp(vL * kF, 0, 7.5)
+	vRf = clamp(vR * kF, 0, 7.5)
+
+
+	# if vLf == 6:
+	# 	vRf = 0.1
+	# elif vRf == 6:
+	# 	vLf = 0.1
+
+
 	#print(C, C_prev)
-	#print("{:.2f} {:.2f}".format(vLf, vRf))
-	print("Erro Total: {:6.2f}     {:6.2f} {:6.2f} {:6.2f}".format(C, Cb, Cm, Ct))
+	print("{:.2f} {:.2f}".format(vLf, vRf))
+	#print("Erro Total: {:6.2f}     {:6.2f} {:6.2f} {:6.2f}".format(C, Cb, Cm, Ct))
 
 	vrep.simxSetJointTargetVelocity(clientID, leftmotor, vLf, vrep.simx_opmode_streaming);
 	vrep.simxSetJointTargetVelocity(clientID, rightmotor, vRf, vrep.simx_opmode_streaming);
 
-	cv2.ellipse(mask, center = (int(top), mask.shape[0]//8), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
+	#cv2.ellipse(mask, center = (int(top), mask.shape[0]//8), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
 	cv2.ellipse(mask, center = (int(mid), mask.shape[0]//2), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
 	cv2.ellipse(mask, center = (int(bot), mask.shape[0]-1), axes = (20, 20), angle = 0, startAngle = 0, endAngle = 360, color = 127, thickness = -1)
 	cv2.imshow('robot camera', mask)	
