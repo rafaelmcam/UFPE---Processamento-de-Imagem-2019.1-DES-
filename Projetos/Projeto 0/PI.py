@@ -1,4 +1,5 @@
 #python3 -W ignore PI.py
+#Rafael Mendes Campello
 
 import vrep
 import cv2
@@ -25,14 +26,14 @@ print('program started')
 vrep.simxFinish(-1)
 clientID=vrep.simxStart('127.0.0.1',19997,True,True,5000,5)
 print ('Connected to remote API server')
-r, colorCam = vrep.simxGetObjectHandle(clientID, "kinect_rgb", vrep.simx_opmode_oneshot_wait);
-r, leftmotor = vrep.simxGetObjectHandle(clientID, "Pioneer_p3dx_leftMotor", vrep.simx_opmode_oneshot_wait);
-r, rightmotor = vrep.simxGetObjectHandle(clientID, "Pioneer_p3dx_rightMotor", vrep.simx_opmode_oneshot_wait);
+r, colorCam = vrep.simxGetObjectHandle(clientID, "kinect_rgb", vrep.simx_opmode_oneshot_wait)
+r, leftmotor = vrep.simxGetObjectHandle(clientID, "Pioneer_p3dx_leftMotor", vrep.simx_opmode_oneshot_wait)
+r, rightmotor = vrep.simxGetObjectHandle(clientID, "Pioneer_p3dx_rightMotor", vrep.simx_opmode_oneshot_wait)
 
-vrep.simxSetJointTargetVelocity(clientID, leftmotor, 0, vrep.simx_opmode_streaming);
-vrep.simxSetJointTargetVelocity(clientID, rightmotor, 0, vrep.simx_opmode_streaming);
+vrep.simxSetJointTargetVelocity(clientID, leftmotor, 0, vrep.simx_opmode_streaming)
+vrep.simxSetJointTargetVelocity(clientID, rightmotor, 0, vrep.simx_opmode_streaming)
 
-r, resolution, image = vrep.simxGetVisionSensorImage(clientID, colorCam, 1, vrep.simx_opmode_streaming);
+r, resolution, image = vrep.simxGetVisionSensorImage(clientID, colorCam, 1, vrep.simx_opmode_streaming)
 time.sleep(0.5)
 
 top, mid, bot = 320, 320, 320
@@ -62,7 +63,7 @@ while True:
 
 	#(2, 1.5), (1.5 , 1.5)
 	k = 4.5
-	kF = 1.3
+	kF = 1.15
 
 	C_prev = C
 
@@ -79,7 +80,7 @@ while True:
 	I += ki * (C/(mask.shape[1]//2))
 	D = kd * ((C/(mask.shape[1]//2)) - (C_prev/(mask.shape[1]//2)))
 	r = P + I + D
-	vL, vR = 4 + r * k, 4 - r * k
+	vL, vR = 3.7 + r * k, 3.7 - r * k
 
 	vLf = clamp(vL * kF, 0.3, 7)
 	vRf = clamp(vR * kF, 0.3, 7)
