@@ -50,6 +50,10 @@ Original             |  Segmentation
 :-------------------------:|:-------------------------:
 ![](ReadMeImages/7_1.png) |  ![](ReadMeImages/7_2.png) 
 
-Projeto 0: Simulador Robô Seguidor de Linha     |  
-:-------------------------:|
-![](ReadMeImages/8_1.png) |  
+
+
+##  <center> Projeto 0: Simulador Robô Seguidor de Linha </center>
+Versão Inicial | Com Timer 
+:-------------------------:|:-------------------------:
+![](ReadMeImages/8_1.png) |  ![](ReadMeImages/8_2.png) 
+
