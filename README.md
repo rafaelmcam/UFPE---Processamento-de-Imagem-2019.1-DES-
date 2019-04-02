@@ -63,3 +63,9 @@ Versão Inicial | Com Timer
 Vídeos Projetados em 3 regiões ajustáveis|
 :-------------------------:|
 ![](ReadMeImages/Projeto2.png) |  
+
+
+##  <center> (Continuação) Projeto 1: Versão Tabuleiro de Xadrez </center>
+Vídeo Projetado nas Casas Pretas 1 Frame por Vez|
+:-------------------------:|
+![](ReadMeImages/Projeto2_2aula.png) |  
