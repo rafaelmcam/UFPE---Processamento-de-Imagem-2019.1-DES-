@@ -1,7 +1,7 @@
 Aplicações
 =============================
 
-## <center> Quantização </center> 
+## <center> <i> Quantização </center> 
 
 Antes             |  Depois
 :-------------------------:|:-------------------------:
@@ -68,4 +68,27 @@ Vídeos Projetados em 3 regiões ajustáveis|
 ##  <center> (Continuação) Projeto 1: Versão Tabuleiro de Xadrez </center>
 Vídeo Projetado nas Casas Pretas 1 Frame por Vez|
 :-------------------------:|
-![](ReadMeImages/Projeto2_2aula.png) |  
+![](ReadMeImages/Projeto2_2aula.png) |
+
+
+
+##  <center> <i> Color Maps
+1-Channel Images|
+:-------------------------:|
+![](ReadMeImages/13_3.png) |
+
+# <center> <i> Mapeamento Projetivo
+Erode             |  Morph Gradient
+:-------------------------:|:-------------------------:
+![](ReadMeImages/13_1.png) |  ![](ReadMeImages/13_2.png) 
+
+
+Original minus Erode(plot cmap)|
+:-------------------------:|
+![](ReadMeImages/13_4.png) |
+
+
+Original             |  Skeleton
+:-------------------------:|:-------------------------:
+![](ReadMeImages/13_6.png) |  ![](ReadMeImages/13_5.png) 
+
