@@ -92,3 +92,7 @@ Original             |  Skeleton
 :-------------------------:|:-------------------------:
 ![](ReadMeImages/13_6.png) |  ![](ReadMeImages/13_5.png) 
 
+
+Transformada de Hough - Line|
+:-------------------------:|
+![](ReadMeImages/14_1.png) |
