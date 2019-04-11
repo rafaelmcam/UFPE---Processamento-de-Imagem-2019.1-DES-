@@ -96,3 +96,8 @@ Original             |  Skeleton
 Transformada de Hough - Line|
 :-------------------------:|
 ![](ReadMeImages/14_1.png) |
+
+
+Transformada de Hough - Círculo|
+:-------------------------:|
+![](ReadMeImages/15_1.png) |
