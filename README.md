@@ -113,3 +113,8 @@ Fonte 1             |  Fonte 2
 Transformação 1            |  Transformação 2
 :-------------------------:|:-------------------------:
 ![](ReadMeImages/16_3.jpg) |  ![](ReadMeImages/16_4.jpg) 
+
+
+Seamless Cloning|
+:-------------------------:|
+![](ReadMeImages/16_5.png) |
