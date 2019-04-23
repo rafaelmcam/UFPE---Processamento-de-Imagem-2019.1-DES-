@@ -118,3 +118,9 @@ Transformação 1            |  Transformação 2
 Seamless Cloning|
 :-------------------------:|
 ![](ReadMeImages/16_5.png) |
+
+
+
+Haar Face Detection|
+:-------------------------:|
+![](ReadMeImages/17_1.png) |
