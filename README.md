@@ -124,3 +124,16 @@ Seamless Cloning|
 Haar Face Detection|
 :-------------------------:|
 ![](ReadMeImages/17_1.png) |
+
+
+## <center> Inpaint
+
+Fonte           |  Segmentação para Inpaint
+:-------------------------:|:-------------------------:
+<img src="ReadMeImages/19_1.png" width="160"> |  ![](ReadMeImages/19_2.png) 
+
+
+
+Fonte           |  Inpaint
+:-------------------------:|:-------------------------:
+![](ReadMeImages/19_3.png) |  ![](ReadMeImages/19_4.png) 
