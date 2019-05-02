@@ -2,8 +2,9 @@
 __pycache__/
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
-16aula/FaceSwap
 
+16aula/FaceSwap
+20aula/glcic
 
 *.mp4
 *.avi

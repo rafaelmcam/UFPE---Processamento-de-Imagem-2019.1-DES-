@@ -137,3 +137,18 @@ Fonte           |  Segmentação para Inpaint
 Fonte           |  Inpaint
 :-------------------------:|:-------------------------:
 ![](ReadMeImages/19_3.png) |  ![](ReadMeImages/19_4.png) 
+
+
+
+## Redes Neurais: tentando fazer algo útil e falhando. (tadax/GLCIC)
+
+
+Tentativa 1           |  Tentativa 2
+:-------------------------:|:-------------------------:
+![](ReadMeImages/20_1.jpg) |  ![](ReadMeImages/20_2.jpg) 
+
+
+Um dia normal para Redes Neurais. |
+:-------------------------:|
+![](ReadMeImages/20_3.jpg) |
+
