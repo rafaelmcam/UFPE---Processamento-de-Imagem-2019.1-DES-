@@ -140,7 +140,7 @@ Fonte           |  Inpaint
 
 
 
-## Redes Neurais: tentando fazer algo útil e falhando. (tadax/GLCIC)
+## Redes Neurais: Resultados Variados(github: tadax/GLCIC)
 
 
 Tentativa 1           |  Tentativa 2
@@ -148,7 +148,7 @@ Tentativa 1           |  Tentativa 2
 ![](ReadMeImages/20_1.jpg) |  ![](ReadMeImages/20_2.jpg) 
 
 
-Um dia normal para Redes Neurais. |
+Problemas. |
 :-------------------------:|
 ![](ReadMeImages/20_3.jpg) |
 
