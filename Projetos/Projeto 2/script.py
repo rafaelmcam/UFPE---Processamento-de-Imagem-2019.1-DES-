@@ -1,3 +1,6 @@
+# Nome: Rafael Mendes Campello
+# Disciplina: Processamento de Imagem 2019.1 - DES
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
