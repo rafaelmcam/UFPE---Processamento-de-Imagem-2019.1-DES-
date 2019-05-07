@@ -1,5 +1,40 @@
-Aplicações
+Projetos
 =============================
+
+
+
+##  <center> Projeto 0: Simulador Robô Seguidor de Linha </center>
+Versão Inicial | Com Timer 
+:-------------------------:|:-------------------------:
+![](ReadMeImages/8_1.png) |  ![](ReadMeImages/8_2.png) 
+
+
+
+##  <center> Projeto 1: Mapeamento Projetivo </center>
+Vídeos Projetados em 3 regiões ajustáveis|
+:-------------------------:|
+![](ReadMeImages/Projeto2.png) |  
+
+
+##  <center> (Continuação) Projeto 1: Versão Tabuleiro de Xadrez </center>
+Vídeo Projetado nas Casas Pretas 1 Frame por Vez|
+:-------------------------:|
+![](ReadMeImages/Projeto2_2aula.png) |
+
+
+##  <center> Projeto 2: InPaint para Vídeos. </center>
+Escolhendo Máscara | Máscara 
+:-------------------------:|:-------------------------:
+![](ReadMeImages/21_1.png) |  ![](ReadMeImages/21_2.png) 
+
+
+
+Original | InPainted 
+:-------------------------:|:-------------------------:
+![](ReadMeImages/21_3.png) |  ![](ReadMeImages/21_4.png) 
+
+
+# Aulas
 
 ## <center> <i> Quantização </center> 
 
@@ -49,26 +84,6 @@ Original             |  Segmentation
 Original             |  Segmentation
 :-------------------------:|:-------------------------:
 ![](ReadMeImages/7_1.png) |  ![](ReadMeImages/7_2.png) 
-
-
-
-##  <center> Projeto 0: Simulador Robô Seguidor de Linha </center>
-Versão Inicial | Com Timer 
-:-------------------------:|:-------------------------:
-![](ReadMeImages/8_1.png) |  ![](ReadMeImages/8_2.png) 
-
-
-
-##  <center> Projeto 1: Mapeamento Projetivo </center>
-Vídeos Projetados em 3 regiões ajustáveis|
-:-------------------------:|
-![](ReadMeImages/Projeto2.png) |  
-
-
-##  <center> (Continuação) Projeto 1: Versão Tabuleiro de Xadrez </center>
-Vídeo Projetado nas Casas Pretas 1 Frame por Vez|
-:-------------------------:|
-![](ReadMeImages/Projeto2_2aula.png) |
 
 
 
