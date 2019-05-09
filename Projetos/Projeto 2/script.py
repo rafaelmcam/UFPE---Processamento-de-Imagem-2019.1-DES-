@@ -1,6 +1,8 @@
 # Nome: Rafael Mendes Campello
 # Disciplina: Processamento de Imagem 2019.1 - DES
 
+#python3 script.py "nome_do_vídeo"
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -173,21 +175,9 @@ class InPaint_Video():
 
 if __name__ == "__main__":
     
-
     parser = argparse.ArgumentParser(description='InPaint Vídeo.')
     parser.add_argument("v", metavar = "videoName", help = "Video Name")
 
-    # parser.add_argument('p', metavar='pgn', help='PGN File to be analyzed')
-    # parser.add_argument('-iv', dest='Inverted', action='store_true', help = 'Inverted board')
-    # parser.add_argument('-et', metavar='engine time', type = int, default = 2000, help='Engine evaluation time in milisseconds per move')
-    # parser.add_argument('--verbose', dest = "print" , action = 'store_true', help="Print analysis to terminal")
-    #parser.set_defaults(Inverted = False, print = False)
-
-    #parser.print_help()
     args = parser.parse_args() 
     
-
-
-
     c = InPaint_Video(args.v, True)
-    #c.getFirstFrame()
