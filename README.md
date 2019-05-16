@@ -167,3 +167,22 @@ Problemas. |
 :-------------------------:|
 ![](ReadMeImages/20_3.jpg) |
 
+
+## Estenografia
+<h5>Dada duas imagens, criar uma terceira que contenha os 4 bits mais significativos das 2 imagens de entrada. Depois "recuperar" as duas imagens a partir da terceira imagem.</h5>
+
+
+Fonte 1          |  Fonte 2
+:-------------------------:|:-------------------------:
+<img src="ReadMeImages/23_1.png"> |  <img src="ReadMeImages/23_2.png">
+
+<h3>Olhe essa imagem de baixo para cima! Perceba o Nemo embutido nessa imagem.</h3>
+
+Imagem com Estenografia. |
+:-------------------------:|
+![](ReadMeImages/23_3.png) |
+
+
+Imagem Recuperada 1     |  Imagem Recuperada 1 
+:-------------------------:|:-------------------------:
+<img src="ReadMeImages/23_5.png"> |  <img src="ReadMeImages/23_4.png">
