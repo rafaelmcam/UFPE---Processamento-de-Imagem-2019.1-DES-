@@ -186,3 +186,10 @@ Imagem com Estenografia. |
 Imagem Recuperada 1     |  Imagem Recuperada 1 
 :-------------------------:|:-------------------------:
 <img src="ReadMeImages/23_5.png"> |  <img src="ReadMeImages/23_4.png">
+
+
+## Reconhecimento de Caracteres (Fonte: github.com/yan9yu/sdr)
+
+yan9yu SDR - KNN + OpenCV para detecção de caracteres simples|
+:-------------------------:|
+![](ReadMeImages/24_1.png) |
